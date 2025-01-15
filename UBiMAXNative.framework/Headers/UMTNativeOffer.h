@@ -26,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)umtNativeAd:(UMTNative *)native didClose:(UMTNativeOffer *)offer;
 /// 信息流详情关闭，
 - (void)umtNativeAd:(UMTNative *)native didDetailClose:(UMTNativeOffer *)offer;
-/// 信息流，视频播放开始
-- (void)umtNativeAd:(UMTNative *)native offer:(UMTNativeOffer *)offer didPlayStartExtra:(NSDictionary *)extra;
 /// 信息流，视频播放状态变更
 - (void)umtNativeAd:(UMTNative *)native offer:(UMTNativeOffer *)offer didChangedPlayStatus:(UMTVideoPlayerStatus)status;
 /// 信息流，视频播放完成或异常
