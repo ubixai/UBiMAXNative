@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)umtNativeAd:(UMTNative *)native offer:(UMTNativeOffer *)offer didChangedPlayStatus:(UMTVideoPlayerStatus)status;
 /// 信息流，视频播放完成或异常
 - (void)umtNativeAd:(UMTNative *)native offer:(UMTNativeOffer *)offer didPlayFinishExtra:(NSDictionary *)extra failed:(UMTError *)error;
+/// 信息流，视频播放进度, 仅支持 Gdt，UBiMAXAdx
+///  @param time 播放进度，单位： ms
+///  @param duration 视频时长，单位：ms
+- (void)umtNativeAd:(UMTNative *)native offer:(UMTNativeOffer *)offer didChangedPlayTime:(CGFloat)time duration:(CGFloat)duration extra:(NSDictionary *)extra;
 
 @end
 
@@ -46,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIViewController *rootViewController;
 
 /// [必要]渲染广告，模板广告开发者无需传入自渲染容器 selfRenderView
-- (void)renderAdView:(UMTNativeAdView *)adView selfRenderView:(UIView *)view;
+- (void)renderAdView:(UMTNativeAdView *)adView selfRenderView:(UIView<UMTMediationNativeSelfRenderViewCreator> *)view;
 
 /**
  注册自渲染广告点击事件.
@@ -59,6 +63,14 @@ NS_ASSUME_NONNULL_BEGIN
        withClickableViews:(NSArray<__kindof UIView *> *_Nullable)clickableViews
             closableViews:(NSArray<__kindof UIView *> *_Nullable)closableViews;
 
+/// 视频操作， 支持 GDT, Baidu UBiMAXAdx
+- (void)updateVideoAction:(UMTNativeVideoAction)action;
+
+/// 设置静音
+/// @param mute YES静音   NO非静音
+- (void)setVideoMute:(BOOL)mute;
+
+- (void)destroy;
 
 @end
 
